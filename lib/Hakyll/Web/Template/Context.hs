@@ -327,6 +327,8 @@ titleField = mapContext takeBaseName . pathField
 --
 --   * @2010-09-06@
 --
+--   * @06.09.2010@
+--
 --   * @September 06, 2010@
 --
 -- Alternatively, when the metadata has a field called @path@ in a
@@ -395,6 +397,7 @@ getItemUTC locale id' = do
         , "%B %e, %Y %l:%M %p"
         , "%B %e, %Y"
         , "%b %d, %Y"
+        , "%d.%m.%Y"
         ]
 
 
