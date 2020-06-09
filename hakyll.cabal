@@ -1,330 +1,298 @@
-Name:    hakyll
-Version: 4.13.3.0
+cabal-version: >=1.10
+name: hakyll
+version: 4.13.3.0
+license: BSD3
+license-file: LICENSE
+maintainer: Jasper Van der Jeugt <m@jaspervdj.be>
+author: Jasper Van der Jeugt <m@jaspervdj.be>
+homepage: http://jaspervdj.be/hakyll
+bug-reports: http://github.com/jaspervdj/Hakyll/issues
+synopsis: A static website compiler library
+description:
+    Hakyll is a static website compiler library. It provides you with the tools to
+    create a simple or advanced static website using a Haskell DSL and formats
+    such as markdown or RST. You can find more information, including a tutorial,
+    on the website:
+    .
+    * <http://jaspervdj.be/hakyll>
+    .
+    If you seek assistance, there's:
+    .
+    * A google group: <http://groups.google.com/group/hakyll>
+    .
+    * An IRC channel, @#hakyll@ on freenode
+    .
+    Additionally, there's the Haddock documentation in the different modules,
+    meant as a reference.
+category: Web
+build-type: Simple
+data-files:
+    example/posts/2015-11-28-carpe-diem.markdown
+    example/posts/2015-10-07-rosa-rosa-rosam.markdown
+    example/posts/2015-12-07-tu-quoque.markdown
+    example/posts/2015-08-12-spqr.markdown
+    example/site.hs
+    example/images/haskell-logo.png
+    example/templates/post-list.html
+    example/templates/default.html
+    example/templates/archive.html
+    example/templates/post.html
+    example/css/default.css
+    example/index.html
+    example/about.rst
+    example/contact.markdown
+data-dir: data
+extra-source-files:
+    CHANGELOG.md
+    tests/data/embed.html
+    tests/data/example.md
+    tests/data/example.md.metadata
+    tests/data/images/favicon.ico
+    tests/data/just-meta.html
+    tests/data/just-meta.html.out
+    tests/data/partial-helper.html
+    tests/data/partial.html
+    tests/data/partial.html.out
+    tests/data/posts/2010-08-26-birthday.md
+    tests/data/posts/2018-09-26.md
+    tests/data/posts/2019/05/10/tomorrow.md
+    tests/data/russian.md
+    tests/data/strip.html
+    tests/data/strip.html.out
+    tests/data/template.html
+    tests/data/template.html.out
+    data/templates/atom-item.xml
+    data/templates/atom.xml
+    data/templates/rss-item.xml
+    data/templates/rss.xml
 
-Synopsis: A static website compiler library
-Description:
-  Hakyll is a static website compiler library. It provides you with the tools to
-  create a simple or advanced static website using a Haskell DSL and formats
-  such as markdown or RST. You can find more information, including a tutorial,
-  on the website:
+source-repository head
+    type: git
+    location: git://github.com/jaspervdj/hakyll.git
 
-  .
+flag previewserver
+    description:
+        Include the preview server
 
-  * <http://jaspervdj.be/hakyll>
+flag watchserver
+    description:
+        Include the watch server
 
-  .
+flag checkexternal
+    description:
+        Include external link checking
 
-  If you seek assistance, there's:
+flag buildwebsite
+    description:
+        Build the hakyll website
+    default: False
+    manual: True
 
-  .
+flag usepandoc
+    description:
+        Include Pandoc support
+    manual: True
 
-  * A google group: <http://groups.google.com/group/hakyll>
+library
+    exposed-modules:
+        Hakyll
+        Hakyll.Commands
+        Hakyll.Core.Compiler
+        Hakyll.Core.Compiler.Internal
+        Hakyll.Core.Configuration
+        Hakyll.Core.Dependencies
+        Hakyll.Core.File
+        Hakyll.Core.Identifier
+        Hakyll.Core.Identifier.Pattern
+        Hakyll.Core.Item
+        Hakyll.Core.Logger
+        Hakyll.Core.Metadata
+        Hakyll.Core.Provider
+        Hakyll.Core.Provider.Metadata
+        Hakyll.Core.Routes
+        Hakyll.Core.Rules
+        Hakyll.Core.Rules.Internal
+        Hakyll.Core.Runtime
+        Hakyll.Core.Store
+        Hakyll.Core.UnixFilter
+        Hakyll.Core.Util.File
+        Hakyll.Core.Util.String
+        Hakyll.Core.Writable
+        Hakyll.Main
+        Hakyll.Web.CompressCss
+        Hakyll.Web.Feed
+        Hakyll.Web.Html
+        Hakyll.Web.Html.RelativizeUrls
+        Hakyll.Web.Paginate
+        Hakyll.Web.Redirect
+        Hakyll.Web.Tags
+        Hakyll.Web.Template
+        Hakyll.Web.Template.Context
+        Hakyll.Web.Template.Internal
+        Hakyll.Web.Template.Internal.Element
+        Hakyll.Web.Template.Internal.Trim
+        Hakyll.Web.Template.List
+    hs-source-dirs: lib
+    other-modules:
+        Data.List.Extended
+        Data.Yaml.Extended
+        Hakyll.Check
+        Hakyll.Core.Compiler.Require
+        Hakyll.Core.Identifier.Pattern.Internal
+        Hakyll.Core.Item.SomeItem
+        Hakyll.Core.Provider.Internal
+        Hakyll.Core.Provider.MetadataCache
+        Hakyll.Core.Util.Parser
+        Paths_hakyll
+    default-language: Haskell2010
+    ghc-options: -Wall
+    build-depends:
+        base >=4.8 && <5,
+        binary >=0.5,
+        blaze-html >=0.5,
+        blaze-markup >=0.5.1,
+        bytestring >=0.9,
+        containers >=0.3,
+        cryptonite >=0.25,
+        data-default >=0.4,
+        deepseq >=1.3,
+        directory >=1.0,
+        file-embed >=0.0.10.1,
+        filepath >=1.0,
+        lrucache >=1.1.1,
+        memory >=0.14.18,
+        mtl >=1,
+        network-uri >=2.6,
+        optparse-applicative >=0.12,
+        parsec >=3.0,
+        process >=1.6,
+        random >=1.0,
+        regex-tdfa >=1.1,
+        resourcet >=1.1,
+        scientific >=0.3.4,
+        tagsoup >=0.13.1,
+        template-haskell >=2.14,
+        text >=0.11,
+        time >=1.8,
+        time-locale-compat >=0.1,
+        unordered-containers >=0.2,
+        vector >=0.11,
+        yaml >=0.8.11
 
-  .
+    if flag(previewserver)
+        cpp-options: -DPREVIEW_SERVER
+        other-modules:
+            Hakyll.Preview.Poll
+            Hakyll.Preview.Server
+        build-depends:
+            wai >=3.2,
+            warp >=3.2,
+            wai-app-static >=3.1,
+            http-types >=0.9,
+            fsnotify >=0.2
 
-  * An IRC channel, @#hakyll@ on freenode
+    if flag(watchserver)
+        cpp-options: -DWATCH_SERVER
+        other-modules:
+            Hakyll.Preview.Poll
+        build-depends:
+            fsnotify >=0.2
 
-  .
+    if flag(checkexternal)
+        cpp-options: -DCHECK_EXTERNAL
+        build-depends:
+            http-conduit >=2.2,
+            http-types >=0.7
 
-  Additionally, there's the Haddock documentation in the different modules,
-  meant as a reference.
+    if flag(usepandoc)
+        exposed-modules:
+            Hakyll.Web.Pandoc
+            Hakyll.Web.Pandoc.Biblio
+            Hakyll.Web.Pandoc.FileType
+        cpp-options: -DUSE_PANDOC
+        other-modules:
+            Hakyll.Web.Pandoc.Binary
+        build-depends:
+            pandoc >=2.0.5,
+            pandoc-citeproc >=0.14
 
-Author:       Jasper Van der Jeugt <m@jaspervdj.be>
-Maintainer:   Jasper Van der Jeugt <m@jaspervdj.be>
-Homepage:     http://jaspervdj.be/hakyll
-Bug-Reports:  http://github.com/jaspervdj/Hakyll/issues
-License:      BSD3
-License-File: LICENSE
-Category:     Web
+executable hakyll-init
+    main-is: Init.hs
+    hs-source-dirs: src
+    other-modules:
+        Paths_hakyll
+    default-language: Haskell2010
+    ghc-options: -Wall -threaded
+    build-depends:
+        hakyll -any,
+        base >=4 && <5,
+        directory >=1.0,
+        filepath >=1.0
 
-Cabal-Version: >= 1.10
-Build-Type:    Simple
-Data-Dir:      data
+executable hakyll-website
+    main-is: site.hs
+    hs-source-dirs: web
+    default-language: Haskell2010
+    ghc-options: -Wall -threaded
+    build-depends:
+        hakyll -any,
+        base >=4 && <5,
+        directory >=1.0,
+        filepath >=1.0,
+        pandoc >=2.0.5
 
-Data-files:
-  example/posts/2015-11-28-carpe-diem.markdown
-  example/posts/2015-10-07-rosa-rosa-rosam.markdown
-  example/posts/2015-12-07-tu-quoque.markdown
-  example/posts/2015-08-12-spqr.markdown
-  example/site.hs
-  example/images/haskell-logo.png
-  example/templates/post-list.html
-  example/templates/default.html
-  example/templates/archive.html
-  example/templates/post.html
-  example/css/default.css
-  example/index.html
-  example/about.rst
-  example/contact.markdown
+    if flag(buildwebsite)
+    else
+        buildable: False
 
-Extra-source-files:
-  CHANGELOG.md
-  tests/data/embed.html
-  tests/data/example.md
-  tests/data/example.md.metadata
-  tests/data/images/favicon.ico
-  tests/data/just-meta.html
-  tests/data/just-meta.html.out
-  tests/data/partial-helper.html
-  tests/data/partial.html
-  tests/data/partial.html.out
-  tests/data/posts/2010-08-26-birthday.md
-  tests/data/posts/2018-09-26.md
-  tests/data/posts/2019/05/10/tomorrow.md
-  tests/data/russian.md
-  tests/data/strip.html
-  tests/data/strip.html.out
-  tests/data/template.html
-  tests/data/template.html.out
-  data/templates/atom-item.xml
-  data/templates/atom.xml
-  data/templates/rss-item.xml
-  data/templates/rss.xml
+test-suite hakyll-tests
+    type: exitcode-stdio-1.0
+    main-is: TestSuite.hs
+    hs-source-dirs: tests
+    other-modules:
+        Hakyll.Core.Dependencies.Tests
+        Hakyll.Core.Identifier.Tests
+        Hakyll.Core.Provider.Metadata.Tests
+        Hakyll.Core.Provider.Tests
+        Hakyll.Core.Routes.Tests
+        Hakyll.Core.Rules.Tests
+        Hakyll.Core.Runtime.Tests
+        Hakyll.Core.Store.Tests
+        Hakyll.Core.UnixFilter.Tests
+        Hakyll.Core.Util.String.Tests
+        Hakyll.Web.CompressCss.Tests
+        Hakyll.Web.Html.RelativizeUrls.Tests
+        Hakyll.Web.Html.Tests
+        Hakyll.Web.Tags.Tests
+        Hakyll.Web.Template.Context.Tests
+        Hakyll.Web.Template.Tests
+        TestSuite.Util
+    default-language: Haskell2010
+    ghc-options: -Wall -threaded
+    build-depends:
+        hakyll -any,
+        QuickCheck >=2.8,
+        tasty >=0.11,
+        tasty-hunit >=0.9,
+        tasty-quickcheck >=0.8,
+        base >=4.8,
+        bytestring >=0.9,
+        containers >=0.3,
+        filepath >=1.0,
+        text >=0.11,
+        unordered-containers >=0.2,
+        yaml >=0.8.11
 
-Source-Repository head
-  Type:     git
-  Location: git://github.com/jaspervdj/hakyll.git
+    if flag(previewserver)
+        cpp-options: -DPREVIEW_SERVER
 
-Flag previewServer
-  Description: Include the preview server
-  Default:     True
+    if flag(watchserver)
+        cpp-options: -DWATCH_SERVER
 
-Flag watchServer
-  Description: Include the watch server
-  Default:     True
+    if flag(checkexternal)
+        cpp-options: -DCHECK_EXTERNAL
 
-Flag checkExternal
-  Description: Include external link checking
-  Default:     True
-
-Flag buildWebsite
-  Description: Build the hakyll website
-  Default:     False
-  Manual:      True
-
-Flag usePandoc
-  Description: Include Pandoc support
-  Default:     True
-  Manual:      True
-
-Library
-  Ghc-Options:      -Wall
-  Hs-Source-Dirs:   lib
-  Default-language: Haskell2010
-
-  Exposed-Modules:
-    Hakyll
-    Hakyll.Commands
-    Hakyll.Core.Compiler
-    Hakyll.Core.Compiler.Internal
-    Hakyll.Core.Configuration
-    Hakyll.Core.Dependencies
-    Hakyll.Core.File
-    Hakyll.Core.Identifier
-    Hakyll.Core.Identifier.Pattern
-    Hakyll.Core.Item
-    Hakyll.Core.Logger
-    Hakyll.Core.Metadata
-    Hakyll.Core.Provider
-    Hakyll.Core.Provider.Metadata
-    Hakyll.Core.Routes
-    Hakyll.Core.Rules
-    Hakyll.Core.Rules.Internal
-    Hakyll.Core.Runtime
-    Hakyll.Core.Store
-    Hakyll.Core.UnixFilter
-    Hakyll.Core.Util.File
-    Hakyll.Core.Util.String
-    Hakyll.Core.Writable
-    Hakyll.Main
-    Hakyll.Web.CompressCss
-    Hakyll.Web.Feed
-    Hakyll.Web.Html
-    Hakyll.Web.Html.RelativizeUrls
-    Hakyll.Web.Paginate
-    Hakyll.Web.Redirect
-    Hakyll.Web.Tags
-    Hakyll.Web.Template
-    Hakyll.Web.Template.Context
-    Hakyll.Web.Template.Internal
-    Hakyll.Web.Template.Internal.Element
-    Hakyll.Web.Template.Internal.Trim
-    Hakyll.Web.Template.List
-
-  Other-Modules:
-    Data.List.Extended
-    Data.Yaml.Extended
-    Hakyll.Check
-    Hakyll.Core.Compiler.Require
-    Hakyll.Core.Identifier.Pattern.Internal
-    Hakyll.Core.Item.SomeItem
-    Hakyll.Core.Provider.Internal
-    Hakyll.Core.Provider.MetadataCache
-    Hakyll.Core.Util.Parser
-    Paths_hakyll
-
-  Build-Depends:
-    base                 >= 4.8      && < 5,
-    binary               >= 0.5,
-    blaze-html           >= 0.5,
-    blaze-markup         >= 0.5.1,
-    bytestring           >= 0.9,
-    containers           >= 0.3,
-    cryptonite           >= 0.25,
-    data-default         >= 0.4,
-    deepseq              >= 1.3,
-    directory            >= 1.0,
-    file-embed           >= 0.0.10.1,
-    filepath             >= 1.0,
-    lrucache             >= 1.1.1,
-    memory               >= 0.14.18,
-    mtl                  >= 1,
-    network-uri          >= 2.6,
-    optparse-applicative >= 0.12,
-    parsec               >= 3.0,
-    process              >= 1.6,
-    random               >= 1.0,
-    regex-tdfa           >= 1.1,
-    resourcet            >= 1.1,
-    scientific           >= 0.3.4,
-    tagsoup              >= 0.13.1,
-    template-haskell     >= 2.14,
-    text                 >= 0.11,
-    time                 >= 1.8,
-    time-locale-compat   >= 0.1,
-    unordered-containers >= 0.2,
-    vector               >= 0.11,
-    yaml                 >= 0.8.11
-
-  If flag(previewServer)
-    Build-depends:
-      wai             >= 3.2,
-      warp            >= 3.2,
-      wai-app-static  >= 3.1,
-      http-types      >= 0.9,
-      fsnotify        >= 0.2
-    Cpp-options:
-      -DPREVIEW_SERVER
-    Other-modules:
-      Hakyll.Preview.Poll
-      Hakyll.Preview.Server
-
-  If flag(watchServer)
-    Build-depends:
-      fsnotify        >= 0.2
-    Cpp-options:
-      -DWATCH_SERVER
-    Other-modules:
-      Hakyll.Preview.Poll
-
-  If flag(checkExternal)
-    Build-depends:
-      http-conduit >= 2.2,
-      http-types   >= 0.7
-    Cpp-options:
-      -DCHECK_EXTERNAL
-
-  If flag(usePandoc)
-    Exposed-Modules:
-      Hakyll.Web.Pandoc
-      Hakyll.Web.Pandoc.Biblio
-      Hakyll.Web.Pandoc.FileType
-    Other-Modules:
-      Hakyll.Web.Pandoc.Binary
-    Build-Depends:
-      pandoc          >= 2.0.5,
-      pandoc-citeproc >= 0.14
-    Cpp-options:
-      -DUSE_PANDOC
-
-Test-suite hakyll-tests
-  Type:             exitcode-stdio-1.0
-  Hs-source-dirs:   tests
-  Main-is:          TestSuite.hs
-  Ghc-options:      -Wall -threaded
-  Default-language: Haskell2010
-
-  Other-modules:
-    Hakyll.Core.Dependencies.Tests
-    Hakyll.Core.Identifier.Tests
-    Hakyll.Core.Provider.Metadata.Tests
-    Hakyll.Core.Provider.Tests
-    Hakyll.Core.Routes.Tests
-    Hakyll.Core.Rules.Tests
-    Hakyll.Core.Runtime.Tests
-    Hakyll.Core.Store.Tests
-    Hakyll.Core.UnixFilter.Tests
-    Hakyll.Core.Util.String.Tests
-    Hakyll.Web.CompressCss.Tests
-    Hakyll.Web.Html.RelativizeUrls.Tests
-    Hakyll.Web.Html.Tests
-    Hakyll.Web.Tags.Tests
-    Hakyll.Web.Template.Context.Tests
-    Hakyll.Web.Template.Tests
-    TestSuite.Util
-
-  Build-Depends:
-    hakyll,
-    QuickCheck                 >= 2.8,
-    tasty                      >= 0.11,
-    tasty-hunit                >= 0.9,
-    tasty-quickcheck           >= 0.8,
-    -- Copy pasted from hakyll dependencies:
-    base                 >= 4.8,
-    bytestring           >= 0.9,
-    containers           >= 0.3,
-    filepath             >= 1.0,
-    text                 >= 0.11,
-    unordered-containers >= 0.2,
-    yaml                 >= 0.8.11
-
-  If flag(previewServer)
-    Cpp-options:
-      -DPREVIEW_SERVER
-
-  If flag(watchServer)
-    Cpp-options:
-      -DWATCH_SERVER
-
-  If flag(checkExternal)
-    Cpp-options:
-      -DCHECK_EXTERNAL
-
-  If flag(usePandoc)
-    Other-modules:
-      Hakyll.Web.Pandoc.FileType.Tests
-    Cpp-options:
-      -DUSE_PANDOC
-
-Executable hakyll-init
-  Main-is:          Init.hs
-  Ghc-options:      -Wall -threaded
-  Hs-source-dirs:   src
-  Default-language: Haskell2010
-
-  Other-modules:
-    Paths_hakyll
-
-  Build-depends:
-    hakyll,
-    base      >= 4   && < 5,
-    directory >= 1.0,
-    filepath  >= 1.0
-
-Executable hakyll-website
-  Main-is:          site.hs
-  Ghc-options:      -Wall -threaded
-  Hs-source-dirs:   web
-  Default-language: Haskell2010
-
-  If flag(buildWebsite)
-    Buildable: True
-  Else
-    Buildable: False
-
-  Build-depends:
-    hakyll,
-    base      >= 4     && < 5,
-    directory >= 1.0,
-    filepath  >= 1.0,
-    pandoc    >= 2.0.5
+    if flag(usepandoc)
+        cpp-options: -DUSE_PANDOC
+        other-modules:
+            Hakyll.Web.Pandoc.FileType.Tests
