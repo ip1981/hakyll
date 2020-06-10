@@ -214,7 +214,8 @@ library
             Hakyll.Web.Pandoc.Binary
         build-depends:
             pandoc >=2.0.5,
-            pandoc-citeproc >=0.14
+            pandoc-citeproc >=0.14,
+            pandoc-types
 
 executable hakyll-init
     main-is: Init.hs

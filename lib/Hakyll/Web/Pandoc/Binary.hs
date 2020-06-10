@@ -1,13 +1,14 @@
 {-# OPTIONS_GHC -fno-warn-orphans #-}
+{-# LANGUAGE CPP           #-}
 {-# LANGUAGE DeriveGeneric #-}
 module Hakyll.Web.Pandoc.Binary where
 
-import           Data.Binary        (Binary (..))
+import           Data.Binary            (Binary (..))
 
-import qualified Text.CSL           as CSL
-import qualified Text.CSL.Reference as REF
-import qualified Text.CSL.Style     as STY
-import           Text.Pandoc
+import qualified Text.CSL               as CSL
+import qualified Text.CSL.Reference     as REF
+import qualified Text.CSL.Style         as STY
+import           Text.Pandoc.Definition
 
 --------------------------------------------------------------------------------
 -- orphans
@@ -31,3 +32,17 @@ instance Binary REF.RefType
 instance Binary REF.Season
 instance Binary STY.Agent
 instance Binary STY.Formatted
+
+#if MIN_VERSION_pandoc_types(1, 21, 0)
+instance Binary Caption
+instance Binary Cell
+instance Binary ColSpan
+instance Binary ColWidth
+instance Binary Row
+instance Binary RowHeadColumns
+instance Binary RowSpan
+instance Binary TableBody
+instance Binary TableFoot
+instance Binary TableHead
+#endif
+
