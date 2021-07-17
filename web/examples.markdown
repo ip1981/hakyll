@@ -192,6 +192,12 @@ directly with the default Hakyll site.
   [source](https://github.com/rpearce/robertwpearce.com)
 - <https://blog.thjread.com/>,
   [source](https://github.com/thjread/thjread-blog)
+- <https://xvw.github.io/>,
+  [source](https://github.com/xvw/planet)
+- <https://jeancharles.quillet.org/>,
+  [source](https://github.com/jecaro/jeancharles.quillet)
+- <https://nliu.net/>,
+  [source](https://github.com/dreamsmasher/site-haskell-source)
 
 ## Hakyll 3.X
 

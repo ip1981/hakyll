@@ -4,6 +4,27 @@ title: Releases
 
 # Releases
 
+## Hakyll 4.14.0.0 (2021-03-14)
+
+- Add `renderPandocWithTransform` and `renderPandocWithTransformM` (by Norman
+  Liu)
+- Make sure the initial project is writable (by Tobias Bora)
+- Bump `pandoc` to 2.11.*
+- Bump `file-embed` upper bound to 0.0.14
+- Bump `random` upper bound to 1.2
+
+## Hakyll 4.13.4.1 (2020-09-30)
+
+- Bump `pandoc` to 2.10.*
+- Bump upper bound for `template-haskell` to 2.17
+- Bump `QuickCheck` upper bound to 2.15
+
+## Hakyll 4.13.4.0 (2020-06-20)
+
+- Miscellaneous Windows-specific fixes and CI (by Laurent P. René de Cotret)
+- Bump upper bound for `cryptonite` to 0.28
+- Bump upper bound for `tasty` to 1.4
+
 ## Hakyll 4.13.3.0 (2020-04-12)
 
 - Fix compilation issue related to `MonadFail` on Windows (by Martín Emanuel)
